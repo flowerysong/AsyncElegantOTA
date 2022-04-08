@@ -215,7 +215,7 @@ export default {
           request.send(formData);
         })
         .catch(() => {
-          this.OTAError = 'Unknown error while upload, check the console for details.';
+          this.OTAError = 'Unknown error during upload, check the console for details.';
           this.uploading = false;
           this.progress = 0;
         });
