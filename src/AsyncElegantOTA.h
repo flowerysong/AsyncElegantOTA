@@ -108,6 +108,8 @@ class AsyncElegantOtaClass{
                         uint32_t maxSketchSpace = (ESP.getFreeSketchSpace() - 0x1000) & 0xFFFFF000;
                         if (!Update.begin((cmd == U_FS)?fsSize:maxSketchSpace, cmd)){ // Start with max available size
                     #elif defined(ESP32)
+                        // Increase watchdog timer to avoid panic
+                        esp_task_wdt_init(15, 0);
                         int cmd = (filename == "filesystem") ? U_SPIFFS : U_FLASH;
                         if (!Update.begin(UPDATE_SIZE_UNKNOWN, cmd)) { // Start with max available size
                     #endif
